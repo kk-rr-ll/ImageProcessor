@@ -6,13 +6,18 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 option(BUILD_TESTS "Build tests" ON)
 option(BUILD_EXAMPLES "Build example programs" ON)
-option(INSTALL_EXAMPLES "Install example programs" OFF)
-option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
 
-if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-    message(STATUS "Debug build - with debug symbols and assertions")
-elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
-    message(STATUS "Release build - with optimizations")
+find_package(JPEG REQUIRED)
+find_package(PNG REQUIRED)
+
+if(JPEG_FOUND)
+    message(STATUS "JPEG found: ${JPEG_LIBRARIES}")
+    message(STATUS "JPEG include: ${JPEG_INCLUDE_DIRS}")
+endif()
+
+if(PNG_FOUND)
+    message(STATUS "PNG found: ${PNG_LIBRARIES}")
+    message(STATUS "PNG include: ${PNG_INCLUDE_DIRS}")
 endif()
 
 add_subdirectory(src)
