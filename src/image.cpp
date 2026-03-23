@@ -1,0 +1,77 @@
+#include "image_processor/image.h"
+#include "image_processor/loaders/bmp_loader.h"
+#include "image_processor/loaders/jpeg_loader.h"
+#include "image_processor/loaders/png_loader.h"
+#include "image_processor/processors/resize_processor.h"
+
+#include <algorithm>
+#include <cctype>
+
+namespace image_processor {
+
+Image::Image() : width_(0), height_(0), channels_(3) {}
+
+Image::~Image() = default;
+
+Image::Image(Image&& other) noexcept
+    : data_(std::move(other.data_))
+    , width_(other.width_)
+    , height_(other.height_)
+    , channels_(other.channels_) {
+    other.width_ = 0;
+    other.height_ = 0;
+    other.channels_ = 0;
+}
+
+Image& Image::operator=(Image&& other) noexcept {
+    if (this != &other) {
+        data_ = std::move(other.data_);
+        width_ = other.width_;
+        height_ = other.height_;
+        channels_ = other.channels_;
+        
+        other.width_ = 0;
+        other.height_ = 0;
+        other.channels_ = 0;
+    }
+    return *this;
+}
+
+bool Image::load(const std::string& filename) {
+    std::unique_ptr<ImageLoader> loader;
+    
+    std::string ext = filename.substr(filename.find_last_of(".") + 1);
+    std::transform(ext.begin(), ext.end(), ext.begin(), ::tolower);
+    
+    if (ext == "bmp") {
+        loader = std::make_unique<BmpLoader>();
+    } else if (ext == "jpg" || ext == "jpeg") {
+        loader = std::make_unique<JpegLoader>();
+    } else if (ext == "png") {
+        loader = std::make_unique<PngLoader>();
+    } else {
+        return false;
+    }
+    
+    return loader->load(filename, *this);
+}
+
+bool Image::save(const std::string& filename, int quality) {
+    std::unique_ptr<ImageLoader> loader;
+    
+    std::string ext = filename.substr(filename.find_last_of(".") + 1);
+    std::transform(ext.begin(), ext.end(), ext.begin(), ::tolower);
+    
+    if (ext == "bmp") {
+        loader = std::make_unique<BmpLoader>();
+    } else if (ext == "jpg" || ext == "jpeg") {
+        loader = std::make_unique<JpegLoader>();
+    } else if (ext == "png") {
+        loader = std::make_unique<PngLoader>();
+    } else {
+        return false;
+    }
+    
+    return loader->save(filename, *this, quality);
+}
+} 
