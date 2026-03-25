@@ -1,5 +1,5 @@
-#include "../../include/image_processor/loaders/png_loader.h"
-#include "../../include/image_processor/image.h"
+#include "image_processor/loaders/png_loader.h"
+#include "image_processor/image.h"
 
 #include <png.h>
 #include <cstdio>
