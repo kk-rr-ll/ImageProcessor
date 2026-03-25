@@ -1,5 +1,5 @@
-#include "../../include/image_processor/loaders/jpeg_loader.h"
-#include "../../include/image_processor/image.h"
+#include "image_processor/loaders/jpeg_loader.h"
+#include "image_processor/image.h"
 
 #include <jpeglib.h>
 #include <jerror.h>
