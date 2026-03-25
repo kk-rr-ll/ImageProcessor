@@ -1,16 +1,40 @@
-# ImageProcessor - image processing library
+# ImageProcessor - библиотека по обработке изображений
 
 # Introduction
 
-ImageProcessor is a library for image processing. Compared to similar libraries, ImageProcessor is easy to use, works faster, and takes up less memory.
+ImageProcessor - библиотека, написанная на c++ для обработки изображений для форматов png, jpeg, bmp.
 
-# Composition
+## Что хотим сделать
 
-# Install
+- ресайзинг изображения разными методами интерполяции:
+    - по ближайшему пикселю(ближайший сосед)
+    - биленейная
+    - бикубическая
+  используя разные методы дискретизации:
+    - попиксельная
+    - суперсемплинг
+- окрашивание изображения в черно-белый цвет
+- компрессия изображения
+- установка текста поверх изображения
 
-# Building from source
+## Что сделали
 
-## Optional dependencies
+- Реализовали возможность загружать и сохранять изображения формата png, jpeg и bmp
+- Сделали ресайзинг попиксельно по ближайшему пикселю
+
+# Структура проекта
+
+# Зависимости
+
+Для сборки нужно:
+- Компилятор C++ с поддержкой C++17
+- Cmake 3.16+
+- libjpeg.h
+- libpng.h
+
+# Сборка
+
+# Тесты
 
 # Contributors
 

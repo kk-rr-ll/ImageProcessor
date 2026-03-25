@@ -32,19 +32,15 @@ public:
     bool load(const std::string& filename);
     bool save(const std::string& filename, int quality = 90);
 
-    // resizing methods
-    void resize(int newWidth, int newHeight);
-    void resizeByWidth(int newWidth);
-    void resizeByHeight(int newHeight);
-    void resizeToMaxSize(int maxSize);
-    void resizeToMinSize(int minSize);
-
     // getters
     int getWidth() const { return width_; }
     int getHeight() const { return height_; }
     int getChannels() const { return channels_; }
     const uint8_t* getData() const { return data_.data(); }
     uint8_t* getData() { return data_.data(); }
+    uint8_t getPixel(int x, int y, int ch) const{
+        return data_[(y * width_ + x) * channels_ + ch];
+    }
     
     // get ImageData for processors
     ImageData getImageData() { return {data_, width_, height_, channels_}; }
@@ -53,6 +49,15 @@ public:
     }
 
     void SetChannels(int channels) { channels_ = channels; }
+    void setSize(int width, int height, int channels) {
+        width_ = width;
+        height_ = height;
+        channels_ = channels;
+        data_.resize(width * height * channels);
+    }
+    void setPixel(int x, int y, int ch, uint8_t value){
+        data_[(y * width_ + x) * channels_ + ch] = value;
+    }
 
 private:
     friend class BmpLoader;
