@@ -52,6 +52,8 @@ public:
         return {const_cast<std::vector<uint8_t>&>(data_), width_, height_, channels_}; 
     }
 
+    void SetChannels(int channels) { channels_ = channels; }
+
 private:
     friend class BmpLoader;
     friend class JpegLoader;
