@@ -2,7 +2,6 @@
 #include "image_processor/loaders/bmp_loader.h"
 #include "image_processor/loaders/jpeg_loader.h"
 #include "image_processor/loaders/png_loader.h"
-#include "image_processor/processors/resize_processor.h"
 
 #include <algorithm>
 #include <cctype>
