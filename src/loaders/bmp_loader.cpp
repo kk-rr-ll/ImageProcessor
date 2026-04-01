@@ -1,5 +1,5 @@
-#include "image_processor/loaders/bmp_loader.h"
-#include "image_processor/image.h"
+#include "loaders/bmp_loader.h"
+#include "image.h"
 
 #include <fstream>
 #include <algorithm>

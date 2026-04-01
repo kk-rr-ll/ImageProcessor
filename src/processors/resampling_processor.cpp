@@ -1,4 +1,5 @@
-#include <image_processor/processors/resampling_processor.h>
+#include <processors/resampling_processor.h>
+#include <algorithm>
 
 namespace image_processor {
     Image resizeNearestNeighborPixelBasedSampling(const Image& img, int newWidth, int newHeight){

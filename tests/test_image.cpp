@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #include <cstdlib>
-#include "image_processor/image.h"
+#include "image.h"
 
 using namespace image_processor;
 
