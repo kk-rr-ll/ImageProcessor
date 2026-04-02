@@ -91,4 +91,8 @@ void Image::resamplingByWidthAndHeight(int width, int height, InterpolationMetho
 void Image::toGray(){
     ColorProcessor::toGray(getImage());
 }
+
+void Image::toNegative(){
+    ColorProcessor::toNegative(getImage());
+}
 } 

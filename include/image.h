@@ -40,6 +40,7 @@ public:
 
     // color
     void toGray();
+    void toNegative();
 
     // getters
     int getWidth() const { return width_; }

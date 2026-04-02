@@ -9,5 +9,6 @@ namespace image_processor{
 
     public:
         static void toGray(Image& img);
+        static void toNegative(Image& img);
     };
 }

@@ -22,4 +22,20 @@ namespace image_processor{
             }
         }
     }
+
+    void ColorProcessor::toNegative(Image& img){
+        int width = img.getWidth();
+        int height = img.getHeight();
+        int channels = img.getChannels();
+
+        for(int x = 0; x < width; x++){
+            for(int y = 0; y < height; y++){
+                uint8_t* pixel = img.getPixelWhithBeginChannel(x, y);
+
+                for(int c = 0; c < channels; c++){
+                    pixel[c] = 255 - pixel[c];
+                }
+            }
+        }
+    }
 }
