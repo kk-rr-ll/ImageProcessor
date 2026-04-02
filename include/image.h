@@ -34,9 +34,12 @@ public:
     bool save(const std::string& filename, int quality = 90);
 
     // resampling
-    void resamplingByWidth(int width);
-    void resamplingByHeight(int height);
-    void resamplingByWidthAndHeight(int width, int height);
+    void resamplingByWidth(int width, InterpolationMethod interpolationMethod);
+    void resamplingByHeight(int height, InterpolationMethod interpolationMethod);
+    void resamplingByWidthAndHeight(int width, int height, InterpolationMethod interpolationMethod);
+
+    // color
+    void toGray();
 
     // getters
     int getWidth() const { return width_; }
@@ -48,6 +51,9 @@ public:
     const uint8_t* getPixelWhithBeginChannel(int x, int y) const { return &data_[(y * width_ + x) * channels_]; }
     uint8_t* getPixelWhithBeginChannel(int x, int y) { return &data_[(y * width_ + x) * channels_]; }
     const Image& getImage() const{
+        return *this;
+    }
+    Image& getImage(){
         return *this;
     }
 

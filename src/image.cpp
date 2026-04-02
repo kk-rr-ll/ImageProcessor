@@ -3,6 +3,7 @@
 #include "loaders/jpeg_loader.h"
 #include "loaders/png_loader.h"
 #include "processors/resampling_processor.h"
+#include "processors/color_processor.h"
 
 #include <algorithm>
 #include <cctype>
@@ -85,5 +86,9 @@ void Image::resamplingByHeight(int height, InterpolationMethod interpolationMeth
 
 void Image::resamplingByWidthAndHeight(int width, int height, InterpolationMethod interpolationMethod = InterpolationMethod::BILINEAR){
     setImage(ResamplingProcessor::resamplingByWidthAndHeight(getImage(), width, height, interpolationMethod));
+}
+
+void Image::toGray(){
+    ColorProcessor::toGray(getImage());
 }
 } 
