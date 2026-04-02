@@ -8,6 +8,7 @@
 namespace image_processor {
 
 class ImageLoader;
+enum class InterpolationMethod;
 
 struct ImageData {
     std::vector<uint8_t>& data;

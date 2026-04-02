@@ -3,12 +3,16 @@ set(SOURCES
     loaders/bmp_loader.cpp
     loaders/jpeg_loader.cpp
     loaders/png_loader.cpp
+    processors/resampling_processor.cpp
+    processors/color_processor.cpp
 )
 
 set(HEADERS
     loaders/bmp_loader.h
     loaders/jpeg_loader.h
     loaders/png_loader.h
+    processors/resampling_processor.h
+    processors/color_processor.h
 )
 
 message(STATUS "Found source files: ${SOURCES}")
