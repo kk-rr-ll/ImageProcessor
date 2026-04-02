@@ -2,6 +2,7 @@
 #include "loaders/bmp_loader.h"
 #include "loaders/jpeg_loader.h"
 #include "loaders/png_loader.h"
+#include "processors/resampling_processor.h"
 
 #include <algorithm>
 #include <cctype>
@@ -72,5 +73,17 @@ bool Image::save(const std::string& filename, int quality) {
     }
     
     return loader->save(filename, *this, quality);
+}
+
+void Image::resamplingByWidth(int width, InterpolationMethod interpolationMethod = InterpolationMethod::BILINEAR){
+    setImage(ResamplingProcessor::resamplingByWidth(getImage(), width, interpolationMethod));
+}
+
+void Image::resamplingByHeight(int height, InterpolationMethod interpolationMethod = InterpolationMethod::BILINEAR){
+
+}
+
+void Image::resamplingByWidthAndHeight(int width, int height, InterpolationMethod interpolationMethod = InterpolationMethod::BILINEAR){
+
 }
 } 

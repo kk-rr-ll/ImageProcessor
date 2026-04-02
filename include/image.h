@@ -29,8 +29,14 @@ public:
     Image(Image&& other) noexcept;
     Image& operator=(Image&& other) noexcept;
 
+    // load, save
     bool load(const std::string& filename);
     bool save(const std::string& filename, int quality = 90);
+
+    // resampling
+    void resamplingByWidth(int width);
+    void resamplingByHeight(int height);
+    void resamplingByWidthAndHeight(int width, int height);
 
     // getters
     int getWidth() const { return width_; }
@@ -41,6 +47,9 @@ public:
     uint8_t getPixel(int x, int y, int ch) const { return data_[(y * width_ + x) * channels_ + ch]; }
     const uint8_t* getPixelWhithBeginChannel(int x, int y) const { return &data_[(y * width_ + x) * channels_]; }
     uint8_t* getPixelWhithBeginChannel(int x, int y) { return &data_[(y * width_ + x) * channels_]; }
+    const Image& getImage() const{
+        return *this;
+    }
 
     
     // get ImageData for processors
@@ -58,6 +67,12 @@ public:
     }
     void setPixel(int x, int y, int ch, uint8_t value){
         data_[(y * width_ + x) * channels_ + ch] = value;
+    }
+    void setImage(Image img){
+        data_.assign(img.getData(), img.getData() + (img.getWidth() * img.getHeight() * img.getChannels()));
+        width_ = img.getWidth();
+        height_ = img.getHeight();
+        channels_ = img.getChannels(); 
     }
 
 private:

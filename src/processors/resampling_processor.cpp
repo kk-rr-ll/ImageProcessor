@@ -2,7 +2,55 @@
 #include <algorithm>
 
 namespace image_processor {
-    Image resizeNearestNeighborPixelBasedSampling(const Image& img, int newWidth, int newHeight){
+    Image ResamplingProcessor::resamplingByWidth(const Image& img, int width, InterpolationMethod interpolationMethod){
+        float scale = static_cast<float>(width) / img.getWidth();
+        int height = static_cast<int>(img.getHeight() * scale);
+
+        switch(interpolationMethod){
+            case InterpolationMethod::NEAREST_NEIGHBOR:
+                return resizeNearestNeighborPixelBasedSampling(img, width, height);
+                break;
+            case InterpolationMethod::BILINEAR:
+                return resizeBilinearPixelBasedSampling(img, width, height);
+                break;
+            default:
+                return resizeBilinearPixelBasedSampling(img, width, height);
+                break;
+        }   
+    }
+
+    Image ResamplingProcessor::resamplingByHeight(const Image& img, int height, InterpolationMethod interpolationMethod){
+        float scale = static_cast<float>(height) / img.getHeight();
+        int width = static_cast<int>(img.getWidth() * scale);
+
+        switch(interpolationMethod){
+            case InterpolationMethod::NEAREST_NEIGHBOR:
+                return resizeNearestNeighborPixelBasedSampling(img, width, height);
+                break;
+            case InterpolationMethod::BILINEAR:
+                return resizeBilinearPixelBasedSampling(img, width, height);
+                break;
+            default:
+                return resizeBilinearPixelBasedSampling(img, width, height);
+                break;
+        }   
+    }
+
+    Image ResamplingProcessor::resamplingByWidthAndHeight(const Image& img, int width, int height, InterpolationMethod interpolationMethod){
+        switch(interpolationMethod){
+            case InterpolationMethod::NEAREST_NEIGHBOR:
+                return resizeNearestNeighborPixelBasedSampling(img, width, height);
+                break;
+            case InterpolationMethod::BILINEAR:
+                return resizeBilinearPixelBasedSampling(img, width, height);
+                break;
+            default:
+                return resizeBilinearPixelBasedSampling(img, width, height);
+                break;
+        }        
+    }
+
+    Image ResamplingProcessor::resizeNearestNeighborPixelBasedSampling(const Image& img, int newWidth, int newHeight){
         Image newImg;
         newImg.setSize(newWidth, newHeight, img.getChannels());
 
@@ -36,7 +84,7 @@ namespace image_processor {
     // f(Qij) - пиксель 
     // вес пикселя = площадь прямоугольника противоположного угла
     // !!!Рекомендуется для масштабирования!!!
-    Image resizeBilinearPixelBasedSampling(const Image& img, int newWidth, int newHeight){
+    Image ResamplingProcessor::resizeBilinearPixelBasedSampling(const Image& img, int newWidth, int newHeight){
         Image newImg;
         newImg.setSize(newWidth, newHeight, img.getChannels());
 
