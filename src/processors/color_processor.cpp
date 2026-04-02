@@ -1,7 +1,7 @@
 #include <processors/color_processor.h>
 
 namespace image_processor{
-    void ColorProcessor::toGray(Image& img){
+    void ColorProcessor::toGrayscale(Image& img){
         int width = img.getWidth();
         int height = img.getHeight();
         int channels = img.getChannels();

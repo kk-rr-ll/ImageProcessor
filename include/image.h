@@ -39,7 +39,7 @@ public:
     void resamplingByWidthAndHeight(int width, int height, InterpolationMethod interpolationMethod);
 
     // color
-    void toGray();
+    void toGrayscale();
     void toNegative();
 
     // getters

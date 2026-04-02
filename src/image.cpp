@@ -88,8 +88,8 @@ void Image::resamplingByWidthAndHeight(int width, int height, InterpolationMetho
     setImage(ResamplingProcessor::resamplingByWidthAndHeight(getImage(), width, height, interpolationMethod));
 }
 
-void Image::toGray(){
-    ColorProcessor::toGray(getImage());
+void Image::toGrayscale(){
+    ColorProcessor::toGrayscale(getImage());
 }
 
 void Image::toNegative(){

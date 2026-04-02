@@ -8,7 +8,7 @@ namespace image_processor{
         ~ColorProcessor()=default;
 
     public:
-        static void toGray(Image& img);
+        static void toGrayscale(Image& img);
         static void toNegative(Image& img);
     };
 }
