@@ -122,5 +122,6 @@ namespace image_processor {
                 }
             }
         }
+        return newImg;
     }
 }
