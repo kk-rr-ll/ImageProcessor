@@ -16,7 +16,7 @@ message(STATUS "Found header files: ${HEADERS}")
 
 add_library(ImageProcessor STATIC ${SOURCES})
 
-add_dependencies(ImageProcessor JPEG::JPEG PNG::PNG)
+add_dependencies(ImageProcessor JPEG::JPEG PNG::PNG ZLIB::ZLIB) 
 
 target_include_directories(ImageProcessor 
     PUBLIC 
@@ -29,4 +29,5 @@ target_link_libraries(ImageProcessor
     PUBLIC
         JPEG::JPEG
         PNG::PNG
+        ZLIB::ZLIB  
 )

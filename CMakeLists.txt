@@ -10,6 +10,18 @@ set(EXTERNAL_INSTALL_DIR ${CMAKE_BINARY_DIR}/external_install)
 set(EXTERNAL_INCLUDE_DIR ${EXTERNAL_INSTALL_DIR}/include)
 set(EXTERNAL_LIB_DIR ${EXTERNAL_INSTALL_DIR}/lib)
 
+ExternalProject_Add(zlib_project
+    SOURCE_DIR ${CMAKE_SOURCE_DIR}/lib/zlib
+    BINARY_DIR ${CMAKE_BINARY_DIR}/zlib-build
+    INSTALL_DIR ${EXTERNAL_INSTALL_DIR}
+    CMAKE_ARGS
+        -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_DIR}
+        -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
+        -DBUILD_SHARED_LIBS=OFF
+        -DZLIB_BUILD_EXAMPLES=OFF
+    BUILD_ALWAYS OFF
+)
+
 ExternalProject_Add(libjpeg_project
     SOURCE_DIR ${CMAKE_SOURCE_DIR}/lib/libjpeg
     BINARY_DIR ${CMAKE_BINARY_DIR}/libjpeg-build
@@ -33,12 +45,21 @@ ExternalProject_Add(libpng_project
         -DPNG_SHARED=OFF
         -DPNG_STATIC=ON
         -DPNG_TESTS=OFF
+        -DPNG_BUILD_ZLIB=OFF  # Используем внешний zlib
+        -DZLIB_ROOT=${EXTERNAL_INSTALL_DIR}
     BUILD_ALWAYS OFF
-    DEPENDS libjpeg_project
+    DEPENDS zlib_project libjpeg_project  
 )
 
 file(MAKE_DIRECTORY ${EXTERNAL_INCLUDE_DIR})
 file(MAKE_DIRECTORY ${EXTERNAL_LIB_DIR})
+
+add_library(ZLIB::ZLIB STATIC IMPORTED GLOBAL)
+set_target_properties(ZLIB::ZLIB PROPERTIES
+    IMPORTED_LOCATION ${EXTERNAL_LIB_DIR}/libz.a
+    INTERFACE_INCLUDE_DIRECTORIES ${EXTERNAL_INCLUDE_DIR}
+)
+add_dependencies(ZLIB::ZLIB zlib_project)
 
 add_library(JPEG::JPEG STATIC IMPORTED GLOBAL)
 set_target_properties(JPEG::JPEG PROPERTIES
@@ -51,7 +72,7 @@ add_library(PNG::PNG STATIC IMPORTED GLOBAL)
 set_target_properties(PNG::PNG PROPERTIES
     IMPORTED_LOCATION ${EXTERNAL_LIB_DIR}/libpng.a
     INTERFACE_INCLUDE_DIRECTORIES ${EXTERNAL_INCLUDE_DIR}
-    INTERFACE_LINK_LIBRARIES z
+    INTERFACE_LINK_LIBRARIES ZLIB::ZLIB 
 )
 add_dependencies(PNG::PNG libpng_project)
 

@@ -20,6 +20,7 @@ function(add_unit_test TEST_NAME TEST_SOURCES)
             GTest::gtest_main
             ${EXTERNAL_LIB_DIR}/libjpeg.a
             ${EXTERNAL_LIB_DIR}/libpng.a
+            ${EXTERNAL_LIB_DIR}/libz.a 
             ${CMAKE_DL_LIBS}
     )
     
