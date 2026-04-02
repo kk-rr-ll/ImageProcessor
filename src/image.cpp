@@ -80,10 +80,10 @@ void Image::resamplingByWidth(int width, InterpolationMethod interpolationMethod
 }
 
 void Image::resamplingByHeight(int height, InterpolationMethod interpolationMethod = InterpolationMethod::BILINEAR){
-
+    setImage(ResamplingProcessor::resamplingByHeight(getImage(), height, interpolationMethod));
 }
 
 void Image::resamplingByWidthAndHeight(int width, int height, InterpolationMethod interpolationMethod = InterpolationMethod::BILINEAR){
-
+    setImage(ResamplingProcessor::resamplingByWidthAndHeight(getImage(), width, height, interpolationMethod));
 }
 } 
