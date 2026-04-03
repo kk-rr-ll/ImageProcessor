@@ -80,7 +80,7 @@ if(WIN32)
 else()
     set(ZLIB_LIB_NAME "libz.a")
     set(JPEG_LIB_NAME "libjpeg.a")
-    set(PNG_LIB_NAME "libpng16.a")
+    set(PNG_LIB_NAME "libpng18.a")
 endif()
 
 add_library(ZLIB::ZLIB STATIC IMPORTED GLOBAL)
