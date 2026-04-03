@@ -18,10 +18,9 @@ function(add_unit_test TEST_NAME TEST_SOURCES)
         PRIVATE
             ImageProcessor
             GTest::gtest_main
-            ${EXTERNAL_LIB_DIR}/libjpeg.a
-            ${EXTERNAL_LIB_DIR}/libpng.a
-            ${EXTERNAL_LIB_DIR}/libz.a 
-            ${CMAKE_DL_LIBS}
+            JPEG::JPEG
+            PNG::PNG
+            ZLIB::ZLIB
     )
     
     target_include_directories(${TEST_NAME}
@@ -31,6 +30,14 @@ function(add_unit_test TEST_NAME TEST_SOURCES)
             ${CMAKE_SOURCE_DIR}/src
             ${EXTERNAL_INCLUDE_DIR}
     )
+    
+    if(WIN32)
+        target_link_libraries(${TEST_NAME}
+            PRIVATE
+                ws2_32
+                shlwapi
+        )
+    endif()
     
     add_test(NAME ${TEST_NAME} COMMAND ${TEST_NAME})
     

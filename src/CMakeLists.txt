@@ -20,11 +20,16 @@ message(STATUS "Found header files: ${HEADERS}")
 
 add_library(ImageProcessor STATIC ${SOURCES})
 
-add_dependencies(ImageProcessor JPEG::JPEG PNG::PNG ZLIB::ZLIB) 
+add_dependencies(ImageProcessor 
+    libjpeg_project 
+    libpng_project 
+    zlib_project
+)
 
 target_include_directories(ImageProcessor 
     PUBLIC 
         ${CMAKE_SOURCE_DIR}/include
+        ${EXTERNAL_INCLUDE_DIR}  
     PRIVATE 
         ${CMAKE_CURRENT_SOURCE_DIR}
 )
