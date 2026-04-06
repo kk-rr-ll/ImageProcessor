@@ -112,13 +112,13 @@ namespace image_processor {
                 double w21 = (1.0-dx)*dy;
                 double w22 = dx*dy;
 
-                const uint8_t* p11 = img.getPixelWhithBeginChannel(x0, y0);
-                const uint8_t* p12 = img.getPixelWhithBeginChannel(x0, y1);
-                const uint8_t* p21 = img.getPixelWhithBeginChannel(x1, y0);
-                const uint8_t* p22 = img.getPixelWhithBeginChannel(x1, y1);
+                const uint8_t* p11 = img.getPixelWithBeginChannel(x0, y0);
+                const uint8_t* p12 = img.getPixelWithBeginChannel(x0, y1);
+                const uint8_t* p21 = img.getPixelWithBeginChannel(x1, y0);
+                const uint8_t* p22 = img.getPixelWithBeginChannel(x1, y1);
 
                 for(int ch = 0; ch < img.getChannels(); ch++){
-                    newImg.getPixelWhithBeginChannel(x, y)[ch] = static_cast<uint8_t>(std::clamp((p11[ch]*w11+p12[ch]*w12+p21[ch]*w21+p22[ch]*w22), 0.0, 255.0));
+                    newImg.getPixelWithBeginChannel(x, y)[ch] = static_cast<uint8_t>(std::clamp((p11[ch]*w11+p12[ch]*w12+p21[ch]*w21+p22[ch]*w22), 0.0, 255.0));
                 }
             }
         }

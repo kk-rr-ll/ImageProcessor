@@ -50,8 +50,8 @@ public:
     const uint8_t* getData() const { return data_.data(); }
     uint8_t* getData() { return data_.data(); }
     uint8_t getPixel(int x, int y, int ch) const { return data_[(y * width_ + x) * channels_ + ch]; }
-    const uint8_t* getPixelWhithBeginChannel(int x, int y) const { return &data_[(y * width_ + x) * channels_]; }
-    uint8_t* getPixelWhithBeginChannel(int x, int y) { return &data_[(y * width_ + x) * channels_]; }
+    const uint8_t* getPixelWithBeginChannel(int x, int y) const { return &data_[(y * width_ + x) * channels_]; }
+    uint8_t* getPixelWithBeginChannel(int x, int y) { return &data_[(y * width_ + x) * channels_]; }
     const Image& getImage() const{
         return *this;
     }

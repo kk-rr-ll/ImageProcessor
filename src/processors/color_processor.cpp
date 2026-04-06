@@ -8,7 +8,7 @@ namespace image_processor{
 
         for(int x = 0; x < width; x++){
             for(int y = 0; y < height; y++){
-                uint8_t* pixel = img.getPixelWhithBeginChannel(x,y);
+                uint8_t* pixel = img.getPixelWithBeginChannel(x,y);
 
                 uint8_t r = pixel[0];
                 uint8_t g = pixel[1];
@@ -30,7 +30,7 @@ namespace image_processor{
 
         for(int x = 0; x < width; x++){
             for(int y = 0; y < height; y++){
-                uint8_t* pixel = img.getPixelWhithBeginChannel(x, y);
+                uint8_t* pixel = img.getPixelWithBeginChannel(x, y);
 
                 for(int c = 0; c < channels; c++){
                     pixel[c] = 255 - pixel[c];
