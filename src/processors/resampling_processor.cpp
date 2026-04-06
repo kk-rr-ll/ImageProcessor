@@ -1,5 +1,6 @@
 #include <processors/resampling_processor.h>
 #include <algorithm>
+#include <math.h>
 
 namespace image_processor {
     Image ResamplingProcessor::resamplingByWidth(const Image& img, int width, InterpolationMethod interpolationMethod){
@@ -104,12 +105,15 @@ namespace image_processor {
                 int x1 = x0 + 1;
                 int y1 = y0 + 1;
 
+                x1 = std::min(x1, imgWidth - 1);
+                y1 = std::min(y1, newHeight - 1);
+
                 double dx = imgX - x0;
                 double dy = imgY - y0;
 
                 double w11 = (1.0-dx)*(1.0-dy);
-                double w12 = dx*(1.0-dy);
-                double w21 = (1.0-dx)*dy;
+                double w21 = dx*(1.0-dy);
+                double w12 = (1.0-dx)*dy;
                 double w22 = dx*dy;
 
                 const uint8_t* p11 = img.getPixelWithBeginChannel(x0, y0);
