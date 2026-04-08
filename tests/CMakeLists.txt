@@ -11,7 +11,6 @@ FetchContent_MakeAvailable(googletest)
 set(TEST_DATA_DIR ${CMAKE_CURRENT_SOURCE_DIR}/test_data)
 file(MAKE_DIRECTORY ${TEST_DATA_DIR})
 
-# Функция для создания одного тестового исполняемого файла
 function(add_unit_test TEST_NAME TEST_SOURCES)
     add_executable(${TEST_NAME} ${TEST_SOURCES})
     
@@ -49,5 +48,5 @@ function(add_unit_test TEST_NAME TEST_SOURCES)
     message(STATUS "Test ${TEST_NAME} configured with TEST_DATA_DIR=${TEST_DATA_DIR}")
 endfunction()
 
-# Добавляем каждый тест отдельным исполняемым файлом
 add_unit_test(test_load      test_load.cpp)
+add_unit_test(test_resampling      test_resampling.cpp)
