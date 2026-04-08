@@ -58,3 +58,6 @@ function(add_example EXAMPLE_NAME SOURCE_FILE)
 endfunction()
 
 add_example(bmprebyhe bmpResamplingByHeight.cpp)
+add_example(jpegrebywihe jpegResamplingByWeightAndHeight.cpp)
+add_example(pngton pngToNegative.cpp)
+add_example(pngtogr pngToGrayscale.cpp)
