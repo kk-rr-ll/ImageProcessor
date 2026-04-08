@@ -48,5 +48,6 @@ function(add_unit_test TEST_NAME TEST_SOURCES)
     message(STATUS "Test ${TEST_NAME} configured with TEST_DATA_DIR=${TEST_DATA_DIR}")
 endfunction()
 
-add_unit_test(test_load      test_load.cpp)
-add_unit_test(test_resampling      test_resampling.cpp)
+add_unit_test(test_load test_load.cpp)
+add_unit_test(test_resampling test_resampling.cpp)
+add_unit_test(test_save test_save.cpp)
