@@ -8,7 +8,11 @@
 namespace image_processor {
 
 class ImageLoader;
-enum class InterpolationMethod;
+
+enum class InterpolationMethod{
+        NEAREST_NEIGHBOR,
+        BILINEAR
+    };
 
 struct ImageData {
     std::vector<uint8_t>& data;

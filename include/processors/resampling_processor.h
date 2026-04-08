@@ -3,11 +3,6 @@
 #include <image.h>
 
 namespace image_processor{
-    enum class InterpolationMethod{
-        NEAREST_NEIGHBOR,
-        BILINEAR
-    };
-
     class ResamplingProcessor{
         ResamplingProcessor();
         ~ResamplingProcessor();

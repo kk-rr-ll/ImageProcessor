@@ -76,23 +76,24 @@ bool Image::save(const std::string& filename, int quality) {
     return loader->save(filename, *this, quality);
 }
 
-void Image::resamplingByWidth(int width, InterpolationMethod interpolationMethod = InterpolationMethod::BILINEAR){
-    setImage(ResamplingProcessor::resamplingByWidth(getImage(), width, interpolationMethod));
+void Image::resamplingByWidth(int width, InterpolationMethod interpolationMethod) {
+    *this = ResamplingProcessor::resamplingByWidth(*this, width, interpolationMethod);
 }
 
-void Image::resamplingByHeight(int height, InterpolationMethod interpolationMethod = InterpolationMethod::BILINEAR){
-    setImage(ResamplingProcessor::resamplingByHeight(getImage(), height, interpolationMethod));
+void Image::resamplingByHeight(int height, InterpolationMethod interpolationMethod) {
+    *this = ResamplingProcessor::resamplingByHeight(*this, height, interpolationMethod);
 }
 
-void Image::resamplingByWidthAndHeight(int width, int height, InterpolationMethod interpolationMethod = InterpolationMethod::BILINEAR){
-    setImage(ResamplingProcessor::resamplingByWidthAndHeight(getImage(), width, height, interpolationMethod));
+void Image::resamplingByWidthAndHeight(int width, int height, InterpolationMethod interpolationMethod) {
+    *this = ResamplingProcessor::resamplingByWidthAndHeight(*this, width, height, interpolationMethod);
 }
 
-void Image::toGrayscale(){
-    ColorProcessor::toGrayscale(getImage());
+void Image::toGrayscale() {
+    ColorProcessor::toGrayscale(*this);
 }
 
-void Image::toNegative(){
-    ColorProcessor::toNegative(getImage());
+void Image::toNegative() {
+    ColorProcessor::toNegative(*this);
 }
-} 
+
+}
