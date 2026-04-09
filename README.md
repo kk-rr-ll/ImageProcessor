@@ -15,7 +15,6 @@ ImageProcessor - библиотека, написанная на c++ для об
     - суперсемплинг
 - окрашивание изображения в черно-белый цвет
 - окрашивание изображения в негативный цвет
-- компрессия изображения
 - установка текста поверх изображения
 
 ## Что сделали
@@ -28,23 +27,70 @@ ImageProcessor - библиотека, написанная на c++ для об
 
 # Структура проекта
 
-# Функциональность
-
-## Ресайзинг
-
-
+```text
+examples/       
+  test_data/    
+include/
+  loaders/     
+  processors/ 
+lib/            сторонние библиотеки  
+src/    
+  loaders/      
+  processors/   
+tests/
+  test_data/     
+```
 
 # Зависимости
 
 Для сборки нужно:
 - Компилятор C++ с поддержкой C++17
 - Cmake 3.16+
-- libjpeg.h
-- libpng.h
+**Обязательно** клонировать библиотеки, указанные ниже в папку lib:
+- libjpeg
+- libpng
+- zlib
 
 # Сборка
 
+Windows:
+
+```text
+cmake .. -DCMAKE_BUILD_TYPE=Realease
+cmake --build . --config Realease    
+```
+
+Linux/MacOS:
+
+```text
+cmake .. 
+make   
+```
+
 # Тесты
+
+Запуск всех тестов:
+
+- Windows:
+
+```text
+ctest -C Release    
+```
+
+- Linux/MacOS:
+
+```text
+ctest -C Release    
+```
+
+Запуск одного теста:
+
+- Windows/Linux/MacOS:
+
+```text
+ctest -R <название теста>    
+```
+
 
 # Contributors
 
