@@ -1,5 +1,4 @@
 #include "test_common.h"
-#include "processors/resampling_processor.h"
 
 using namespace image_processor;
 using namespace image_processor_test;
@@ -37,7 +36,7 @@ TEST_F(ResamplingTest, ResamplingByWidthKeepsValidData) {
     EXPECT_NE(img.getData(), nullptr);
     uint8_t* data = img.getData();
     ASSERT_NE(data, nullptr);
-    data[0]; // просто доступ
+    data[0];
 }
 
 TEST_F(ResamplingTest, ResamplingByHeightScalesProportionally) {

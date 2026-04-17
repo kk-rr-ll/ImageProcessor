@@ -41,7 +41,6 @@ TEST_F(ImageTestBase, LoadNonexistentFile) {
     EXPECT_FALSE(img.load(getTestImagePath("missing.bmp")));
 }
 
-// Опциональный тест сохранения
 TEST_F(ImageTestBase, SaveToTempFile) {
     Image img;
     std::string load_path = getTestImagePath("test_image1.bmp");

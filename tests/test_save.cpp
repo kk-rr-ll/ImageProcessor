@@ -1,5 +1,4 @@
 #include "test_common.h"
-#include "processors/resampling_processor.h"
 
 using namespace image_processor;
 using namespace image_processor_test;
@@ -17,8 +16,6 @@ TEST_F(ImageTestBase, SaveAsBmp) {
     EXPECT_EQ(loaded.getWidth(), img.getWidth());
     EXPECT_EQ(loaded.getHeight(), img.getHeight());
     EXPECT_EQ(loaded.getChannels(), img.getChannels());
-
-    // Сравниваем данные (попиксельно)
     size_t size = img.getWidth() * img.getHeight() * img.getChannels();
     EXPECT_EQ(std::memcmp(loaded.getData(), img.getData(), size), 0);
 
