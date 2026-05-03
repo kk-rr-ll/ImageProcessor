@@ -4,6 +4,7 @@
 #include "loaders/png_loader.h"
 #include "processors/resampling_processor.h"
 #include "processors/color_processor.h"
+#include "text_renderer/text_renderer.h"
 
 #include <algorithm>
 #include <cctype>
@@ -94,6 +95,13 @@ void Image::toGrayscale() {
 
 void Image::toNegative() {
     ColorProcessor::toNegative(*this);
+}
+
+void Image::drawText(const std::string& text, int x, int y, 
+                           const std::vector<uint8_t>& color,
+                           int fontSize,
+                           const std::string& fontFamily) {
+    TextRenderer::drawText(*this, text, x, y, color, fontSize, fontFamily);
 }
 
 }

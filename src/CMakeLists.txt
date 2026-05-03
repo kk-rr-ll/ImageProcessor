@@ -5,6 +5,7 @@ set(SOURCES
     loaders/png_loader.cpp
     processors/resampling_processor.cpp
     processors/color_processor.cpp
+    text_renderer/text_renderer.cpp
 )
 
 set(HEADERS
@@ -13,6 +14,7 @@ set(HEADERS
     loaders/png_loader.h
     processors/resampling_processor.h
     processors/color_processor.h
+    text_renderer/text_renderer.h
 )
 
 message(STATUS "Found source files: ${SOURCES}")

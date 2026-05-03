@@ -24,6 +24,7 @@ ImageProcessor - библиотека, написанная на c++ для об
 - Сделали ресайзинг с помощью билинейной интерполяции попиксельно
 - Сделали конвертацию изображения в черно-белое
 - Сделали конвертацию изображения в негативные оттенки
+- Установка текста поверх изображения
 
 # Структура проекта
 
@@ -95,5 +96,9 @@ ctest -R <название теста>
 
 # Contributors
 
-<a href="https://github.com/kk-rr-ll"><img src="https://avatars.githubusercontent.com/u/147162592?v=4" /></a>
-<a href="https://github.com/Allex-P319"><img src="https://avatars.githubusercontent.com/u/268979458?v=4" /></a>
+<a href="https://github.com/kk-rr-ll">
+  <img src="https://avatars.githubusercontent.com/u/147162592?v=4" width="100" height="100" />
+</a>
+<a href="https://github.com/Allex-P319">
+  <img src="https://avatars.githubusercontent.com/u/268979458?v=4" width="100" height="100" />
+</a>

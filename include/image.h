@@ -47,6 +47,12 @@ public:
     void toGrayscale();
     void toNegative();
 
+    // text renderer
+    void drawText(const std::string& text, int x, int y, 
+              const std::vector<uint8_t>& color = {255, 255, 255},
+              int fontSize = 12,
+              const std::string& fontFamily = "default");
+
     // getters
     int getWidth() const { return width_; }
     int getHeight() const { return height_; }
