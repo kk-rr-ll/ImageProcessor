@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <vector>
+#include <fstream>
 #include "image.h"
 
 namespace image_processor_test {
@@ -20,6 +21,27 @@ protected:
 
     std::string getTestImagePath(const std::string& filename) const {
         return test_data_dir_ + "/" + filename;
+    }
+
+    Image loadTestImage(const std::string& filename = "test_image1.bmp") const {
+        Image img;
+        std::string path = getTestImagePath(filename);
+        EXPECT_TRUE(img.load(path)) << "Failed to load " << path;
+        return img;
+    }
+
+    static bool imagesEqual(const Image& a, const Image& b) {
+        if (a.getWidth() != b.getWidth() || a.getHeight() != b.getHeight() || a.getChannels() != b.getChannels())
+            return false;
+        size_t size = a.getWidth() * a.getHeight() * a.getChannels();
+        return std::memcmp(a.getData(), b.getData(), size) == 0;
+    }
+
+    static std::vector<uint8_t> copyImageData(const Image& img) {
+        size_t size = img.getWidth() * img.getHeight() * img.getChannels();
+        std::vector<uint8_t> data(size);
+        std::memcpy(data.data(), img.getData(), size);
+        return data;
     }
 
     std::string test_data_dir_;
